@@ -289,4 +289,55 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => el.classList.add('revealed'));
   }
 
+  // ------------------------------------------------------------------------
+  // 9. GALLERY LIGHTBOX MODAL
+  // ------------------------------------------------------------------------
+  const galleryCards = document.querySelectorAll('.gallery-card');
+  const galleryModal = document.getElementById('galleryModal');
+  const galleryModalImg = document.getElementById('galleryModalImg');
+  const galleryModalTitle = document.getElementById('galleryModalTitle');
+  const galleryModalCaption = document.getElementById('galleryModalCaption');
+  const galleryModalClose = document.getElementById('galleryModalClose');
+  const galleryModalOverlay = document.getElementById('galleryModalOverlay');
+
+  function openGalleryModal(fullSrc, title, caption, altText) {
+    if (!galleryModal || !galleryModalImg) return;
+    galleryModalImg.src = fullSrc;
+    galleryModalImg.alt = altText || title || 'Gallery Image';
+    if (galleryModalTitle) galleryModalTitle.textContent = title || '';
+    if (galleryModalCaption) galleryModalCaption.textContent = caption || '';
+    galleryModal.classList.add('active');
+    galleryModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGalleryModal() {
+    if (!galleryModal) return;
+    galleryModal.classList.remove('active');
+    galleryModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  galleryCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const fullSrc = card.getAttribute('data-full');
+      const title = card.getAttribute('data-title');
+      const caption = card.getAttribute('data-caption');
+      const img = card.querySelector('.gallery-img');
+      const altText = img ? img.getAttribute('alt') : title;
+      if (fullSrc) {
+        openGalleryModal(fullSrc, title, caption, altText);
+      }
+    });
+  });
+
+  galleryModalClose?.addEventListener('click', closeGalleryModal);
+  galleryModalOverlay?.addEventListener('click', closeGalleryModal);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && galleryModal?.classList.contains('active')) {
+      closeGalleryModal();
+    }
+  });
+
 });
