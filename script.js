@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. SCROLL REVEAL ANIMATIONS (IntersectionObserver)
   // ------------------------------------------------------------------------
   const revealElements = document.querySelectorAll(
-    '.main-service-card, .feature-card, .step-card, .gallery-card, .about-card-main, .about-focus-areas, .message-banner-card'
+    '.main-service-card, .feature-card, .benefit-card, .step-card, .gallery-card, .about-card-main, .about-focus-areas, .message-banner-card, .batch-highlights-box'
   );
 
   revealElements.forEach(el => el.classList.add('reveal'));
