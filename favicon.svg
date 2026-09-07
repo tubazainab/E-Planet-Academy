@@ -5,7 +5,7 @@
       <stop offset="0%" stop-color="#60A5FA"/>
       <stop offset="45%" stop-color="#2563EB"/>
       <stop offset="85%" stop-color="#1D4ED8"/>
-      <stop offset="100%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
     </radialGradient>
     <!-- Orbit Ring Gradient -->
     <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -14,12 +14,11 @@
       <stop offset="100%" stop-color="#D97706"/>
     </linearGradient>
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1D4ED8" flood-opacity="0.35"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#1D4ED8" flood-opacity="0.3"/>
     </filter>
   </defs>
 
-  <!-- Background rounded canvas (for clean tab appearance) -->
-  <rect width="64" height="64" rx="16" fill="#0F172A"/>
+  <!-- Transparent Background (No dark/black rectangle) -->
 
   <!-- Back part of planetary ring (behind planet) -->
   <path d="M 12 36 C 10 28 22 21 38 21 C 51 21 59 26 57 32" 
@@ -33,8 +32,8 @@
   <circle cx="32" cy="32" r="17" fill="url(#planetGrad)" filter="url(#glow)"/>
 
   <!-- Planet Surface Atmosphere / Highlight Curve -->
-  <path d="M 20 25 A 17 17 0 0 1 44 23 C 37 28 26 27 20 25 Z" fill="#93C5FD" opacity="0.35"/>
-  <path d="M 17 34 C 23 37 39 37 47 31 A 17 17 0 0 1 45 39 C 36 44 24 43 17 34 Z" fill="#1E3A8A" opacity="0.45"/>
+  <path d="M 20 25 A 17 17 0 0 1 44 23 C 37 28 26 27 20 25 Z" fill="#93C5FD" opacity="0.4"/>
+  <path d="M 17 34 C 23 37 39 37 47 31 A 17 17 0 0 1 45 39 C 36 44 24 43 17 34 Z" fill="#172554" opacity="0.35"/>
 
   <!-- Front part of planetary ring (in front of planet) -->
   <path d="M 10 33 C 8 39 19 46 35 46 C 50 46 59 40 56 31" 
