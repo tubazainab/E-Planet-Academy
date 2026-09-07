@@ -56,17 +56,30 @@
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Layout Spacing */
-  --container-max-w: 1200px;
+  --container-max-w: 1360px;
   --header-height: 74px;
 }
 
 /* --------------------------------------------------------------------------
-   2. RESET & BASE (NO EXTRA SIDE SPACES / OVERFLOWS)
+   2. RESET & BASE (CONTENT PROTECTION & ZERO SIDE SPACES)
    -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* Allow text typing and selection in form fields only */
+input, textarea, select {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
 }
 
 html {
@@ -149,12 +162,19 @@ button, input, select, textarea {
   max-width: var(--container-max-w);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .section {
-  padding: 5rem 0;
+  padding: 4rem 0;
   width: 100%;
   overflow-x: hidden;
 }
@@ -1141,7 +1161,7 @@ button, input, select, textarea {
 
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 

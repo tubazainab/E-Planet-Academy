@@ -3,6 +3,14 @@
  * Pure Vanilla JavaScript: Interactivity, Validation & Navigation
  */
 
+// Immediate content protection (prevents selection, copying, right-click and shortcuts)
+document.oncontextmenu = function() { return false; };
+document.onselectstart = function(e) {
+  if (e && e.target && ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return true;
+  return false;
+};
+document.ondragstart = function() { return false; };
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================================================================
@@ -15,6 +23,53 @@ document.addEventListener('DOMContentLoaded', () => {
     academyName: 'ePlanet Speakers Academy',
     location: 'Ismailpura, Kamptee, Maharashtra'
   };
+
+  // ------------------------------------------------------------------------
+  // [CONTENT PROTECTION] PREVENT COPYING, SELECTING, CUTTING & SHORTCUTS
+  // ------------------------------------------------------------------------
+  // Disable right-click context menu across the website
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    return false;
+  });
+
+  // Disable mouse drag selection
+  document.addEventListener('selectstart', (e) => {
+    if (!['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // Disable copy event
+  document.addEventListener('copy', (e) => {
+    e.preventDefault();
+    return false;
+  });
+
+  // Disable cut event
+  document.addEventListener('cut', (e) => {
+    e.preventDefault();
+    return false;
+  });
+
+  // Disable dragging text and images
+  document.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+    return false;
+  });
+
+  // Disable copy/select/inspect keyboard shortcuts (except inside form inputs/textareas)
+  document.addEventListener('keydown', (e) => {
+    const isInput = ['INPUT', 'TEXTAREA'].includes(e.target.tagName);
+    if (!isInput && (e.ctrlKey || e.metaKey)) {
+      const key = e.key.toLowerCase();
+      if (['c', 'a', 'u', 's', 'p', 'x'].includes(key)) {
+        e.preventDefault();
+        return false;
+      }
+    }
+  });
 
   // ------------------------------------------------------------------------
   // 1. DYNAMIC YEAR IN FOOTER
